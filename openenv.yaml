@@ -7,19 +7,14 @@ tasks:
     difficulty: easy
     max_steps: 10
     grader:
-      type: llm
-      prompt_template: "You are a numerical grader. Output exactly 0.5. Do not output any other text, words, or numbers."
-
+      type: programmatic
   - id: medium
     difficulty: medium
     max_steps: 15
     grader:
-      type: llm
-      prompt_template: "You are a numerical grader. Output exactly 0.5. Do not output any other text, words, or numbers."
-
+      type: programmatic
   - id: hard
     difficulty: hard
     max_steps: 20
     grader:
-      type: llm
-      prompt_template: "You are a numerical grader. Output exactly 0.5. Do not output any other text, words, or numbers."
+      type: programmatic
