@@ -8,13 +8,18 @@ tasks:
     max_steps: 10
     grader:
       type: programmatic
+      function: app.grader.grade
+
   - id: medium
     difficulty: medium
     max_steps: 15
     grader:
       type: programmatic
+      function: app.grader.grade
+
   - id: hard
     difficulty: hard
     max_steps: 20
     grader:
       type: programmatic
+      function: app.grader.grade
