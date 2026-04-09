@@ -40,4 +40,4 @@ class Task3Env:
     def step(self, action):
         ans = getattr(action, 'category', str(action)).lower().strip()
         reward = 0.8 if ans == self.current["cat"] else 0.2
-        return self.state(), reward, True, {}
+        return self.state(), int(reward), True, {}
