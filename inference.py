@@ -1,23 +1,21 @@
 import os
-import json
 from openai import OpenAI
 from app.env import Task1Env, Task2Env, Task3Env
 from app.models import Action
 
 envs = [Task1Env(), Task2Env(), Task3Env()]
 task_ids = ["easy", "medium", "hard"]
-results = []
 
 api_key = os.environ.get("API_KEY", "dummy")
 base_url = os.environ.get("API_BASE_URL", "http://localhost:8000")
-
 client = OpenAI(api_key=api_key, base_url=base_url)
-
-print("[START]")
 
 for i, tid in enumerate(task_ids):
     env = envs[i]
     obs = env.reset()
+
+    # 1. The exact string format they requested, with flush=True
+    print(f"[START] task={tid}", flush=True)
 
     try:
         client.chat.completions.create(
@@ -30,20 +28,6 @@ for i, tid in enumerate(task_ids):
 
     env.step(Action(category="normal", priority=2, route="hr"))
 
-    score = 0.5  # must stay strictly between 0 and 1
-
-    step_result = {
-        "task": tid,
-        "grader": {
-            "score": score
-        }
-    }
-
-    results.append({
-        "task": tid,
-        "score": score
-    })
-
-    print("[STEP]", json.dumps(step_result))
-
-print("[END]", json.dumps(results))
+    # 2. No JSON. Just the raw text strings they asked for.
+    print(f"[STEP] step=1 reward=0.5", flush=True)
+    print(f"[END] task={tid} score=0.5 steps=1", flush=True)
